@@ -1,0 +1,3 @@
+# To let WordPress know that the server has mod_rewrite
+http://blog.sjinks.pro/wordpress-plugins/nginx-compatibility/
+http://wordpress.org/extend/plugins/nginx-compatibility/
