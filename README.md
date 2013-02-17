@@ -21,7 +21,8 @@ As 'root', please use the following guidelines...
 + `cd $HOME`
 + `git clone git://github.com/pothi/WordPress-Nginx.git git/wp-nginx`
 + `cp -a git/wp-nginx/* /etc/nginx/`
-+ `nginx -t`
++ Edit `/etc/nginx/sites-enabled/domainname.conf` to fit your specific site / domain
++ `nginx -t` (to check if everything is okay)
 
 Things to Watchout
 ------------------
