@@ -27,6 +27,11 @@ Things to Watchout
 ------------------
 
 + An include statement in `/etc/nginx/nginx.conf` that includes `/etc/nginx/conf.d/common.conf` file
-+ An include statement in `/etc/nginx/conf.d/common.conf` file that includes `/etc/nginx/sites-enabled/`
++ An include statement in `/etc/nginx/conf.d/common.conf` file that includes `/etc/nginx/sites-enabled/*`
 + *Please please please*, take a backup of all your Nginx related configurations!
 + Remove any default files such as `defaults.conf` and `ssl.conf` inside `/etc/nginx/conf.d/` or inside `/etc/nginx/sites-enabled/`.
+
+Questions, Issues or Bugs?
+--------------------------
+
+Please contact via Github or at https://www.tinywp.in/contact/
