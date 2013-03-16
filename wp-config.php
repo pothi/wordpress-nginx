@@ -9,5 +9,6 @@
  * Warning: It is not a recommended solution.
  * Ref: http://core.trac.wordpress.org/ticket/9235
  */
-if ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) && preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/', $_SERVER['HTTP_X_FORWARDED_FOR'] ) )
-		$_SERVER['REMOTE_ADDR'] = $_SERVER['HTTP_X_FORWARDED_FOR'];
+if ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) && preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/', $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+   $_SERVER['REMOTE_ADDR'] = $_SERVER['HTTP_X_FORWARDED_FOR'];
+}
