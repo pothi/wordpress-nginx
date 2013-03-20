@@ -42,5 +42,8 @@ nginx -t && service nginx restart
 
 ## Questions, Issues or Bugs?
 
-+ Please contact via Github or use the contact form at https://www.tinywp.in/contact/
-+ I'm available for hire to setup, tweak or troubleshoot your server. :)
++ Please submit issues or bugs via Github
++ Patches, improvements, and suggestions are welcomed.
++ Please use contact form at https://www.tinywp.in/contact/ , if you'd like to contact Pothi Kalimuthu for other reasons.
++ I'm available for hire to setup, tweak or troubleshoot your server to provide *the fastest WordPress hosting*.
++ Thanks for having a look here. Have a good time!
