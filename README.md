@@ -35,9 +35,7 @@ sed -i --follow-symlinks 's/domainname.com/YourDomain.com/g' /etc/nginx/sites-en
 nginx -t && service nginx restart
 ```
 
-Guidelines for CentOS
----------------------
----------------------
+## Guidelines for CentOS
 + Look for `default.conf` and `ssl.conf` in `/etc/nginx/conf.d/` and move them to a safe place for future reference.
 + Create new directories named `/etc/nginx/sites-available/` and `/etc/nginx/sites-enabled/`.
 + Look for an include statement in `/etc/nginx/nginx.conf` that includes `/etc/nginx/conf.d/common.conf` file, among other files.
