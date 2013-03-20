@@ -1,10 +1,8 @@
-WordPress-Nginx
-===============
+# WordPress-Nginx
 
 WordPress specific Nginx configurations, tweaks, etc on Debian based distributions with PHP-FPM.
 
-Compatibility
--------------
+## Compatibility
 
 Tested with Nginx version 1.2.x in
 + Debian 6.x
@@ -12,8 +10,7 @@ Tested with Nginx version 1.2.x in
 
 For CentOS based distributions, please look for the guidelines below, on the list of changes to be done in order to make this configuration to work.
 
-How to Install
---------------
+## How to Install
 
 Please backup your old configuration files...
 
@@ -35,8 +32,7 @@ sed -i --follow-symlinks 's/domainname.com/YourDomain.com/g' /etc/nginx/sites-en
 nginx -t && service nginx restart
 ```
 
-Guidelines for CentOS
----------------------
+### Guidelines for CentOS
 + Look for `default.conf` and `ssl.conf` in `/etc/nginx/conf.d/` and move them to a safe place for future reference.
 + Create new directories named `/etc/nginx/sites-available/` and `/etc/nginx/sites-enabled/`.
 + Look for an include statement in `/etc/nginx/nginx.conf` that includes `/etc/nginx/conf.d/common.conf` file, among other files.
@@ -44,8 +40,7 @@ Guidelines for CentOS
 + The file `/etc/nginx/fastcgi_params` in Debian is named as `/etc/nginx/fastcgi.conf` in CentOS. Update the reference/s to this file. `nginx -t` would throw an error, anyway, if you don't.
 
 
-Questions, Issues or Bugs?
---------------------------
+## Questions, Issues or Bugs?
 
 + Please contact via Github or use the contact form at https://www.tinywp.in/contact/
 + I'm available for hire to setup, tweak or troubleshoot your server. :)
