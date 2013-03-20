@@ -3,9 +3,14 @@ WordPress-Nginx
 
 WordPress specific Nginx configurations, tweaks, etc on Debian based distributions with PHP-FPM.
 
+Compatibility
+-------------
+
 Tested with Nginx version 1.2.x in
 + Debian 6.x
 + Ubuntu 12.04.x
+
+For CentOS based distributions, please look for the guidelines below after/in the `How To Install` section, on the list of changes to be done in order to make this configuration to work.
 
 How to Install
 --------------
@@ -30,15 +35,18 @@ sed -i --follow-symlinks 's/domainname.com/YourDomain.com/g' /etc/nginx/sites-en
 nginx -t && service nginx restart
 ```
 
-List of changes to be done to make it work with CentOS based distributions including Amazon Linux AMI...
-+ Look out for `default.conf` and `ssl.conf` in `/etc/nginx/conf.d/` and move them to a safe place for future reference.
+Guidelines for CentOS
+---------------------
+---------------------
++ Look for `default.conf` and `ssl.conf` in `/etc/nginx/conf.d/` and move them to a safe place for future reference.
 + Create new directories named `/etc/nginx/sites-available/` and `/etc/nginx/sites-enabled/`.
-+ An include statement in `/etc/nginx/nginx.conf` that includes `/etc/nginx/conf.d/common.conf` file
-+ An include statement in `/etc/nginx/conf.d/common.conf` file that includes `/etc/nginx/sites-enabled/*`
-+ The file `/etc/nginx/fastcgi_params` in Debian is named as `/etc/nginx/fastcgi.conf` in CentOS.
++ Look for an include statement in `/etc/nginx/nginx.conf` that includes `/etc/nginx/conf.d/common.conf` file, among other files.
++ Look for an include statement in `/etc/nginx/conf.d/common.conf` file that includes `/etc/nginx/sites-enabled/*`, among other files.
++ The file `/etc/nginx/fastcgi_params` in Debian is named as `/etc/nginx/fastcgi.conf` in CentOS. Update the reference/s to this file. `nginx -t` would throw an error, anyway, if you don't.
 
 
 Questions, Issues or Bugs?
 --------------------------
 
-Please contact via Github or at https://www.tinywp.in/contact/
++ Please contact via Github or use the contact form at https://www.tinywp.in/contact/
++ I'm available for hire to setup, tweak or troubleshoot your server. :)
