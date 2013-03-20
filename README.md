@@ -22,8 +22,11 @@ As 'root', please use the following guidelines...
 cd $HOME
 git clone git://github.com/pothi/WordPress-Nginx.git git/wp-nginx
 cp -a git/wp-nginx/* /etc/nginx/
+# Optional steps:
+# remove the existing symlink at /etc/nginx/sites-enabled/domainname.conf
+# rename /etc/nginx/sites-available/domainname.conf
+# create a symlink of the above file to /etc/nginx/sites-enabled
 sed -i --follow-symlinks 's/domainname.com/YourDomain.com/g' /etc/nginx/sites-enabled/domainname.conf
-# optional: rename /etc/nginx/sites-available/domainname.conf and create a symlink it to /etc/nginx/sites-enabled
 nginx -t && service nginx restart
 ```
 
