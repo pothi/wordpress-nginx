@@ -17,13 +17,13 @@ Since, I haven't tested on these yet, I'm glad to install and set it up on your 
 Please backup the existing configuration files...
 
 ```bash
-mkdir $HOME/nginx-backup-$(date +%F_%H-%M-%S)
-cp -a /etc/nginx/* $HOME/nginx-backup
+TIMESTAMP=$(date +%F_%H-%M-%S)
+mkdir $HOME/nginx-backup-$TIMESTAMP
+cp -a /etc/nginx/* $HOME/nginx-backup-$TIMESTAMP
 ```
 
 As 'root', please use the following guidelines...
 ```bash
-cd $HOME
 git clone git://github.com/pothi/WordPress-Nginx.git $HOME/git/wp-nginx
 cd $HOME/git/wp-nginx
 git checkout centos
