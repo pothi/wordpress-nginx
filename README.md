@@ -1,6 +1,6 @@
 # WordPress-Nginx
 
-WordPress specific Nginx configurations, tweaks, etc on Debian based distributions with PHP-FPM.
+WordPress specific Nginx configurations, tweaks, compatibility routines, etc.
 
 ## Compatibility
 
@@ -8,28 +8,32 @@ Tested with Nginx version 1.4.x in
 + Debian 6.x & Debian 7.x
 + Ubuntu 12.04.x
 
-For CentOS based distributions, please look for the guidelines below, on the list of changes to be done in order to make this configuration to work.
+For Fedora, Redhat, CentOS and Amazon Linux AMI or similar distributions, please look at the [CentOS branch](https://github.com/pothi/WordPress-Nginx/tree/centos "WordPress-Nginx configuration for Amazon Linux AMI, Fedora, Redhat and CentOS based distributions").
 
 ## How to Install
 
 Please backup your old configuration files...
 
 ```bash
-mkdir $HOME/nginx-backup
-cp -a /etc/nginx/* $HOME/nginx-backup
+TIMESTAMP=$(date +%F_%H-%M-%S)
+mkdir $HOME/nginx-backup-$TIMESTAMP
+cp -a /etc/nginx/* $HOME/nginx-backup-$TIMESTAMP
 ```
 
-As 'root', please use the following guidelines...
+As __sudo or root__, please use the following guidelines...
 ```bash
-cd $HOME
-git clone git://github.com/pothi/WordPress-Nginx.git git/wp-nginx
-cp -a git/wp-nginx/* /etc/nginx/
-# Optional steps:
-# remove the existing symlink at /etc/nginx/sites-enabled/domainname.conf
-# rename /etc/nginx/sites-available/domainname.conf
-# create a symlink of the above file to /etc/nginx/sites-enabled
-sed -i --follow-symlinks 's/domainname.com/YourDomain.com/g' /etc/nginx/sites-enabled/domainname.conf
-nginx -t && service nginx restart
+git clone git://github.com/pothi/WordPress-Nginx.git $HOME/git/wp-nginx
+cd $HOME/git/wp-nginx
+git checkout centos
+cp -a $HOME/git/wp-nginx/* /etc/nginx/
+rm /etc/nginx/sites-enabled/domainname.conf
+# Other steps that depends on your particular requirement:
+# YOUR_DOMAIN_NAME=tinywp.com
+# mv /etc/nginx/sites-available/domainname.conf /etc/nginx/sites-available/$YOUR_DOMAIN_NAME.conf
+# cd /etc/nginx/sites-enabled/
+# ln -s ../sites-available/$YOUR_DOMAIN_NAME.conf
+# sed -i --follow-symlinks 's/domainname.com/'$YOUR_DOMAIN_NAME'/g' /etc/nginx/sites-enabled/$YOUR_DOMAIN_NAME.conf
+# nginx -t && service nginx restart
 ```
 
 ### Changes on CentOS
