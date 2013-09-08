@@ -4,8 +4,8 @@ WordPress specific Nginx configurations, tweaks, etc on Debian based distributio
 
 ## Compatibility
 
-Tested with Nginx version 1.2.x in
-+ Debian 6.x
+Tested with Nginx version 1.4.x in
++ Debian 6.x & Debian 7.x
 + Ubuntu 12.04.x
 
 For CentOS based distributions, please look for the guidelines below, on the list of changes to be done in order to make this configuration to work.
@@ -32,12 +32,13 @@ sed -i --follow-symlinks 's/domainname.com/YourDomain.com/g' /etc/nginx/sites-en
 nginx -t && service nginx restart
 ```
 
-### Guidelines for CentOS
-+ Look for `default.conf` and `ssl.conf` in `/etc/nginx/conf.d/` and move them to a safe place for future reference.
-+ Create new directories named `/etc/nginx/sites-available/` and `/etc/nginx/sites-enabled/`.
-+ Look for an include statement in `/etc/nginx/nginx.conf` that includes `/etc/nginx/conf.d/common.conf` file, among other files.
-+ Look for an include statement in `/etc/nginx/conf.d/common.conf` file that includes `/etc/nginx/sites-enabled/*`, among other files.
-+ The file `/etc/nginx/fastcgi_params` in Debian is named as `/etc/nginx/fastcgi.conf` in CentOS. Update the reference/s to this file. `nginx -t` would throw an error, anyway, if you don't.
+### Changes on CentOS
+
+CentOS has a different file naming convention, yet simple directory structure, when compared to Debian derivatives. Let me describe them and I'd let you decide upon how you'd want to structure your files and name those files.
+
++ The configuration for default sites are named as `default.conf` and `ssl.conf` in `/etc/nginx/conf.d/`.
++ There is no `sites-available` or `sites-enabled` folder.
++ The file `/etc/nginx/fastcgi_params` in Debian is named as `/etc/nginx/fastcgi.conf` in CentOS.
 
 
 ## Questions, Issues or Bugs?
