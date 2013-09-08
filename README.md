@@ -1,38 +1,44 @@
 # WordPress-Nginx
 
-WordPress specific Nginx configurations, tweaks, etc on Debian based distributions with PHP-FPM.
+WordPress specific Nginx configurations, tweaks, etc on Fedora, Redhat & CentOS based distributions with PHP-FPM.
 
 ## Compatibility
 
-Tested with Nginx version 1.4.x in
-+ Debian 6.x & Debian 7.x
-+ Ubuntu 12.04.x
+It is a work in progress. I plan to test it on the following...
 
-For CentOS based distributions, please look for the guidelines below, on the list of changes to be done in order to make this configuration to work.
++ Amazon Linux AMI (2013.x+)
++ Fedora 19+
++ CentOS 6+
+
+Since, I haven't tested on these yet, I'm glad to install and set it up on your server for free! In return, you'd be thanked here for providing the test machine!
 
 ## How to Install
 
-Please backup your old configuration files...
+Please backup the existing configuration files...
 
 ```bash
-mkdir $HOME/nginx-backup
+mkdir $HOME/nginx-backup-$(date +%F_%H-%M-%S)
 cp -a /etc/nginx/* $HOME/nginx-backup
 ```
 
 As 'root', please use the following guidelines...
 ```bash
 cd $HOME
-git clone git://github.com/pothi/WordPress-Nginx.git git/wp-nginx
-cp -a git/wp-nginx/* /etc/nginx/
-# Optional steps:
-# remove the existing symlink at /etc/nginx/sites-enabled/domainname.conf
-# rename /etc/nginx/sites-available/domainname.conf
-# create a symlink of the above file to /etc/nginx/sites-enabled
-sed -i --follow-symlinks 's/domainname.com/YourDomain.com/g' /etc/nginx/sites-enabled/domainname.conf
-nginx -t && service nginx restart
+git clone git://github.com/pothi/WordPress-Nginx.git $HOME/git/wp-nginx
+cd $HOME/git/wp-nginx
+git checkout centos
+cp -a $HOME/git/wp-nginx/* /etc/nginx/
+rm /etc/nginx/sites-enabled/domainname.conf
+# Other steps that varies depending on your particular requirement:
+# YOUR_DOMAIN_NAME=tinywp.com
+# mv /etc/nginx/sites-available/domainname.conf /etc/nginx/sites-available/$YOUR_DOMAIN_NAME.conf
+# cd /etc/nginx/sites-enabled/
+# ln -s ../sites-available/$YOUR_DOMAIN_NAME.conf
+# sed -i --follow-symlinks 's/domainname.com/'$YOUR_DOMAIN_NAME'/g' /etc/nginx/sites-enabled/$YOUR_DOMAIN_NAME.conf
+# nginx -t && service nginx restart
 ```
 
-### Changes on CentOS
+### Changes compared to Debian derivatives
 
 CentOS has a different file naming convention, yet simple directory structure, when compared to Debian derivatives. Let me describe them and I'd let you decide upon how you'd want to structure your files and name those files.
 
