@@ -38,15 +38,6 @@ rm /etc/nginx/sites-enabled/domainname.conf
 # nginx -t && service nginx restart
 ```
 
-### Changes compared to Debian derivatives
-
-CentOS has a different file naming convention, yet simple directory structure, when compared to Debian derivatives. Let me describe them and I'd let you decide upon how you'd want to structure your files and name those files.
-
-+ The configuration for default sites are named as `default.conf` and `ssl.conf` in `/etc/nginx/conf.d/`.
-+ There is no `sites-available` or `sites-enabled` folder.
-+ The file `/etc/nginx/fastcgi_params` in Debian is named as `/etc/nginx/fastcgi.conf` in CentOS.
-
-
 ## Questions, Issues or Bugs?
 
 + Please submit issues or bugs via Github
