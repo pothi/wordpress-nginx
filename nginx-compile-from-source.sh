@@ -58,7 +58,7 @@ if [ $PREV_VER == 'NULL' ]
         echo
         sudo apt-get -y -q install nginx &> /dev/null
         if [ "$?" != '0' ]; then
-            echo 'Something wrent wrong while installing Nginx from official repo. Probably you don't have sudo privilege!'
+            echo 'Something wrent wrong while installing Nginx from official repo. Probably you do not have sudo privilege!'
             exit 1
         fi
 
@@ -90,7 +90,7 @@ if [ $PREV_VER == 'NULL' ]
         echo "Installing development packages..."
         sudo apt-get -y -q install $PRE_PACK &> /dev/null
         if [ "$?" != '0' ]; then
-            echo 'Something wrent wrong while installing the development packages. Probably, you don't have sudo privilege!'
+            echo 'Something wrent wrong while installing the development packages. Probably, you do not have sudo privilege!'
             exit 1
         fi
 
