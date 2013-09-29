@@ -43,6 +43,8 @@ CONFIGURE_OPTIONS="--user=www-data --group=www-data
                     --with-http_secure_link_module
                     --with-ipv6
 
+                    --with-debug
+
                     "
 
 # If you use ngx_pagespeed, install the dependencies for it by uncommenting the lines with the heading "Pagespeed Module"
