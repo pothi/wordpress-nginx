@@ -14,7 +14,7 @@ PRE_PACK="gcc make libpcre3-dev zlib1g-dev libssl-dev libgeoip-dev"
 
 # Change the following to whatever the current version.
 # You can know the current versino at http://nginx.org
-CURRENT_VER="1.4.2"
+CURRENT_VER="1.4.3"
 
 # Be careful, in choosing this value.
 # Valid values are "BINARY", "NULL", "currently_installed_version_number"
