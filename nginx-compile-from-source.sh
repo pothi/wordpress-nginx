@@ -60,6 +60,7 @@ CONFIGURE_OPTIONS="--user=www-data --group=www-data
 #--- Download Nginx Pagespeed module ---#
 # Ref: https://github.com/pagespeed/ngx_pagespeed#how-to-build
 if [ $VERSION_PAGESPEED_MODULE != 'NULL' ]; then
+    echo 'Hold on while downloading PageSpeed module...'
     cd ~
     mkdir ~/src/ &> /dev/null
     cd ~/src/ &> /dev/null
@@ -67,7 +68,7 @@ if [ $VERSION_PAGESPEED_MODULE != 'NULL' ]; then
     unzip -q release-${VERSION_PAGESPEED_MODULE}-beta.zip && rm release-${VERSION_PAGESPEED_MODULE}-beta.zip &> /dev/null # or unzip release-${VERSION_PAGESPEED_MODULE}-beta
     cd ngx_pagespeed-release-${VERSION_PAGESPEED_MODULE}-beta/ &> /dev/null
     wget -q https://dl.google.com/dl/page-speed/psol/${VERSION_PAGESPEED_MODULE}.tar.gz &> /dev/null
-    tar -xzvf ${VERSION_PAGESPEED_MODULE}.tar.gz # expands to psol/
+    tar -xzf ${VERSION_PAGESPEED_MODULE}.tar.gz # expands to psol/
     cd ~
 fi
 
@@ -101,12 +102,12 @@ if [ $PREV_VER == 'NULL' ]
         fi
 
         # Pagespeed Module
-        # echo 'Installing mod_pagespeed dependencies...'
-        # sudo apt-get -y -q install git-core build-essential zlib1g-dev libpcre3 libpcre3-dev &> /dev/null
-        # if [ "$?" != '0' ]; then
-            # echo 'Something wrent wrong while installing the dependencies for pagespeed'
-            # exit 1
-        # fi
+        echo 'Installing mod_pagespeed dependencies...'
+        sudo apt-get -y -q install git-core build-essential zlib1g-dev libpcre3 libpcre3-dev &> /dev/null
+        if [ "$?" != '0' ]; then
+            echo 'Something wrent wrong while installing the dependencies for pagespeed'
+            exit 1
+        fi
 
     elif [ $PREV_VER == "BINARY" ]; then
         echo "Installing development packages..."
