@@ -14,7 +14,7 @@ PRE_PACK="gcc make libpcre3-dev zlib1g-dev libssl-dev libgeoip-dev"
 
 # Change the following to whatever the current version.
 # You can know the current versino at http://nginx.org
-CURRENT_VER="1.4.3"
+CURRENT_VER="1.4.4"
 
 # Be careful, in choosing this value.
 # Valid values are "BINARY", "NULL", "currently_installed_version_number"
@@ -22,6 +22,11 @@ CURRENT_VER="1.4.3"
 # Use "BINARY" - If your server has __already__ got Nginx that was installed using "sudo apt-get install nginx" command.
 # Use "currently_installed_version_number" - If your server has already got Nginx that was installed using this script.
 PREV_VER="BINARY"
+
+# To disable PageSpeed module...
+# Step #1 - set VERSION_PAGESPEED_MODULE="NULL"
+# Step #2 - remove the line "--add-module=$HOME/src/ngx_pagespeed-release-${VERSION_PAGESPEED_MODULE}-beta" in CONFIGURE_OPTIONS
+VERSION_PAGESPEED_MODULE="1.7.30.1"
 
 # This may change, depending on your requirement.
 # The following _may_ fit most use-cases
@@ -44,12 +49,27 @@ CONFIGURE_OPTIONS="--user=www-data --group=www-data
                     --with-ipv6
 
                     --with-debug
+                    --add-module=$HOME/src/ngx_pagespeed-release-${VERSION_PAGESPEED_MODULE}-beta
 
                     "
 
 # If you use ngx_pagespeed, install the dependencies for it by uncommenting the lines with the heading "Pagespeed Module"
 
 ### You _may_ not need to edit below this line ###
+
+#--- Download Nginx Pagespeed module ---#
+# Ref: https://github.com/pagespeed/ngx_pagespeed#how-to-build
+if [ $VERSION_PAGESPEED_MODULE != 'NULL' ]; then
+    cd ~
+    mkdir ~/src/ &> /dev/null
+    cd ~/src/ &> /dev/null
+    wget -q https://github.com/pagespeed/ngx_pagespeed/archive/release-${VERSION_PAGESPEED_MODULE}-beta.zip &> /dev/null
+    unzip -q release-${VERSION_PAGESPEED_MODULE}-beta.zip && rm release-${VERSION_PAGESPEED_MODULE}-beta.zip &> /dev/null # or unzip release-${VERSION_PAGESPEED_MODULE}-beta
+    cd ngx_pagespeed-release-${VERSION_PAGESPEED_MODULE}-beta/ &> /dev/null
+    wget -q https://dl.google.com/dl/page-speed/psol/${VERSION_PAGESPEED_MODULE}.tar.gz &> /dev/null
+    tar -xzvf ${VERSION_PAGESPEED_MODULE}.tar.gz # expands to psol/
+    cd ~
+fi
 
 CWD=$(pwd)
 USER_BIN="/usr/sbin"
@@ -176,6 +196,7 @@ fi
 
 # clean up
 rm -rf $COMPILE_DIR &> /dev/null
+rm -rf ~/src/ngx_pagespeed-release-${VERSION_PAGESPEED_MODULE}-beta/ &> /dev/null
 cd $CWD &> /dev/null
 
 echo "done."; echo
