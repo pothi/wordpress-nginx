@@ -102,11 +102,13 @@ if [ $PREV_VER == 'NULL' ]
         fi
 
         # Pagespeed Module
-        echo 'Installing mod_pagespeed dependencies...'
-        sudo apt-get -y -q install git-core build-essential zlib1g-dev libpcre3 libpcre3-dev &> /dev/null
-        if [ "$?" != '0' ]; then
-            echo 'Something wrent wrong while installing the dependencies for pagespeed'
-            exit 1
+        if [ $VERSION_PAGESPEED_MODULE != 'NULL' ]; then
+            echo 'Installing mod_pagespeed dependencies...'
+            sudo apt-get -y -q install git-core build-essential zlib1g-dev libpcre3 libpcre3-dev &> /dev/null
+            if [ "$?" != '0' ]; then
+                echo 'Something wrent wrong while installing the dependencies for pagespeed'
+                exit 1
+            fi
         fi
 
     elif [ $PREV_VER == "BINARY" ]; then
