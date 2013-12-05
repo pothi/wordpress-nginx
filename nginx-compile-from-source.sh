@@ -77,19 +77,11 @@ USER_BIN="/usr/sbin"
 
 if [ $PREV_VER == 'NULL' ]
     then
-        echo 'Installing Nginx from Ubuntu repo, to install the dependencies'
+        echo 'Install Nginx dependencies'
         echo
-        sudo apt-get -y -q install nginx &> /dev/null
+        sudo apt-get -y -q install libgd2-noxpm libjpeg8 libpng12-0 libxslt1.1 &> /dev/null
         if [ "$?" != '0' ]; then
-            echo 'Something wrent wrong while installing Nginx from official repo. Probably you do not have sudo privilege!'
-            exit 1
-        fi
-
-        # Now we don't need Nginx binary. Let's remove it
-        sudo apt-get -y remove nginx nginx-common nginx-full &> /dev/null
-        sudo apt-get autoremove -y &> /dev/null
-        if [ "$?" != '0' ]; then
-            echo 'Something wrent wrong while removing Nginx that was installed via official repo'
+            echo 'Something wrent wrong while installing Nginx dependencies. Probably you do not have sudo privilege!'
             exit 1
         fi
 
@@ -181,7 +173,7 @@ if [ $PREV_VER == 'NULL' ]; then
     # mv /root/nginx-init /etc/init.d/nginx
 
     # In Ubuntu 12.04, the following is not needed
-    # /usr/sbin/update-rc.d -f nginx defaults
+    /usr/sbin/update-rc.d -f nginx defaults
 
     # Start Nginx for the first time
     sudo nginx -t && sudo service nginx start
@@ -198,10 +190,11 @@ if [ "$?" != '0' ]; then
 fi
 
 # clean up
-rm -rf $COMPILE_DIR &> /dev/null
 rm -rf ~/src/ngx_pagespeed-release-${VERSION_PAGESPEED_MODULE}-beta/ &> /dev/null
+rm -rf $COMPILE_DIR &> /dev/null
 cd $CWD &> /dev/null
 
 echo "done."; echo
 
 exit 0
+
