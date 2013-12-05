@@ -35,6 +35,7 @@ CONFIGURE_OPTIONS="--user=www-data --group=www-data
                     --sbin-path=/usr/sbin/nginx
                     --conf-path=/etc/nginx/nginx.conf
                     --pid-path=/var/run/nginx.pid
+                    --lock-path=/var/run/subsys/nginx
                     --error-log-path=/var/log/nginx/error.log
                     --http-log-path=/var/log/nginx/access.log
 
@@ -170,7 +171,12 @@ fi
 # (re)start Nginx server
 if [ $PREV_VER == 'NULL' ]; then
     # http://wiki.nginx.org/Nginx-init-ubuntu
-    # mv /root/nginx-init /etc/init.d/nginx
+    wget https://raw.github.com/JasonGiedymin/nginx-init-ubuntu/master/nginx -O ~/nginx-init -q &> /dev/null
+    sed -i 's:\(DAEMON=\).*:\1/usr/sbin/nginx:' ~/nginx-init
+    sed -i 's:\(PIDSPATH=\).*:\1/var/run:' ~/nginx-init
+    sed -i 's:\(NGINX_CONF_FILE=\).*:\1/etc/nginx/nginx.conf:' ~/nginx-init
+    sudo mv ~/nginx-init /etc/init.d/nginx
+    chmod +x /etc/init.d/nginx
 
     # In Ubuntu 12.04, the following is not needed
     /usr/sbin/update-rc.d -f nginx defaults
@@ -190,6 +196,7 @@ if [ "$?" != '0' ]; then
 fi
 
 # clean up
+rm -f ~/nginx-init &> /dev/null
 rm -rf ~/src/ngx_pagespeed-release-${VERSION_PAGESPEED_MODULE}-beta/ &> /dev/null
 rm -rf $COMPILE_DIR &> /dev/null
 cd $CWD &> /dev/null
