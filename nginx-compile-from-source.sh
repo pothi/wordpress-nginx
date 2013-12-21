@@ -179,7 +179,7 @@ if [ $PREV_VER == 'NULL' ]; then
     chmod +x /etc/init.d/nginx
 
     # In Ubuntu 12.04, the following is not needed
-    /usr/sbin/update-rc.d -f nginx defaults
+    sudo /usr/sbin/update-rc.d -f nginx defaults
 
     # Start Nginx for the first time
     sudo nginx -t && sudo service nginx start
