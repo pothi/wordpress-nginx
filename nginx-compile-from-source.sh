@@ -14,7 +14,7 @@ PRE_PACK="gcc make libpcre3-dev zlib1g-dev libssl-dev libgeoip-dev"
 
 # Change the following to whatever the current version.
 # You can know the current versino at http://nginx.org
-CURRENT_VER="1.4.4"
+CURRENT_VER="1.6.0"
 
 # Be careful, in choosing this value.
 # Valid values are "BINARY", "NULL", "currently_installed_version_number"
@@ -50,28 +50,13 @@ CONFIGURE_OPTIONS="--user=www-data --group=www-data
                     --with-ipv6
 
                     --with-debug
-                    --add-module=$HOME/src/ngx_pagespeed-release-${VERSION_PAGESPEED_MODULE}-beta
+                    --add-module=ngx_pagespeed-release-${VERSION_PAGESPEED_MODULE}-beta
 
                     "
 
 # If you use ngx_pagespeed, install the dependencies for it by uncommenting the lines with the heading "Pagespeed Module"
 
 ### You _may_ not need to edit below this line ###
-
-#--- Download Nginx Pagespeed module ---#
-# Ref: https://github.com/pagespeed/ngx_pagespeed#how-to-build
-if [ $VERSION_PAGESPEED_MODULE != 'NULL' ]; then
-    echo 'Hold on while downloading PageSpeed module...'
-    cd ~
-    mkdir ~/src/ &> /dev/null
-    cd ~/src/ &> /dev/null
-    wget -q https://github.com/pagespeed/ngx_pagespeed/archive/release-${VERSION_PAGESPEED_MODULE}-beta.zip &> /dev/null
-    unzip -q release-${VERSION_PAGESPEED_MODULE}-beta.zip && rm release-${VERSION_PAGESPEED_MODULE}-beta.zip &> /dev/null # or unzip release-${VERSION_PAGESPEED_MODULE}-beta
-    cd ngx_pagespeed-release-${VERSION_PAGESPEED_MODULE}-beta/ &> /dev/null
-    wget -q https://dl.google.com/dl/page-speed/psol/${VERSION_PAGESPEED_MODULE}.tar.gz &> /dev/null
-    tar -xzf ${VERSION_PAGESPEED_MODULE}.tar.gz # expands to psol/
-    cd ~
-fi
 
 CWD=$(pwd)
 USER_BIN="/usr/sbin"
@@ -137,6 +122,21 @@ fi
 # download custom modules
 # git clone git://github.com/yaoweibin/ngx_http_substitutions_filter_module.git
 # git clone https://github.com/pagespeed/ngx_pagespeed.git
+
+#--- Download Nginx Pagespeed module ---#
+# Ref: https://github.com/pagespeed/ngx_pagespeed#how-to-build
+if [ $VERSION_PAGESPEED_MODULE != 'NULL' ]; then
+    echo 'Hold on while downloading PageSpeed module...'
+    cd ~
+    mkdir ~/src/ &> /dev/null
+    cd ~/src/ &> /dev/null
+    wget -q https://github.com/pagespeed/ngx_pagespeed/archive/release-${VERSION_PAGESPEED_MODULE}-beta.zip &> /dev/null
+    unzip -q release-${VERSION_PAGESPEED_MODULE}-beta.zip && rm release-${VERSION_PAGESPEED_MODULE}-beta.zip &> /dev/null # or unzip release-${VERSION_PAGESPEED_MODULE}-beta
+    cd ngx_pagespeed-release-${VERSION_PAGESPEED_MODULE}-beta/ &> /dev/null
+    wget -q https://dl.google.com/dl/page-speed/psol/${VERSION_PAGESPEED_MODULE}.tar.gz &> /dev/null
+    tar -xzf ${VERSION_PAGESPEED_MODULE}.tar.gz # expands to psol/
+    cd ~
+fi
 
 echo 'Please wait! Configuring Nginx!'
 ./configure $CONFIGURE_OPTIONS &> /dev/null
