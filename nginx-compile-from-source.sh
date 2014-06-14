@@ -127,15 +127,11 @@ fi
 # Ref: https://github.com/pagespeed/ngx_pagespeed#how-to-build
 if [ $VERSION_PAGESPEED_MODULE != 'NULL' ]; then
     echo 'Hold on while downloading PageSpeed module...'
-    cd ~
-    mkdir ~/src/ &> /dev/null
-    cd ~/src/ &> /dev/null
     wget -q https://github.com/pagespeed/ngx_pagespeed/archive/release-${VERSION_PAGESPEED_MODULE}-beta.zip &> /dev/null
     unzip -q release-${VERSION_PAGESPEED_MODULE}-beta.zip && rm release-${VERSION_PAGESPEED_MODULE}-beta.zip &> /dev/null # or unzip release-${VERSION_PAGESPEED_MODULE}-beta
     cd ngx_pagespeed-release-${VERSION_PAGESPEED_MODULE}-beta/ &> /dev/null
     wget -q https://dl.google.com/dl/page-speed/psol/${VERSION_PAGESPEED_MODULE}.tar.gz &> /dev/null
     tar -xzf ${VERSION_PAGESPEED_MODULE}.tar.gz # expands to psol/
-    cd ~
 fi
 
 echo 'Please wait! Configuring Nginx!'
