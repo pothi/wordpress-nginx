@@ -4,9 +4,9 @@ WordPress specific Nginx configurations, tweaks, compatibility routines, etc.
 
 ## Compatibility
 
-Tested with Nginx version 1.4.x in
-+ Debian 6.x & Debian 7.x
-+ Ubuntu 12.04.x
+Tested with 
++ Debian Debian 9.x (upcoming version)
++ Ubuntu 16.04.x
 
 For Fedora, Redhat, CentOS and Amazon Linux AMI or similar distributions, please look at the [CentOS branch](https://github.com/pothi/WordPress-Nginx/tree/centos "WordPress-Nginx configuration for Amazon Linux AMI, Fedora, Redhat and CentOS based distributions").
 
@@ -22,10 +22,10 @@ cp -a /etc/nginx/* $HOME/nginx-backup-$TIMESTAMP
 
 As __sudo or root__, please use the following guidelines...
 ```bash
-git clone git://github.com/pothi/WordPress-Nginx.git $HOME/git/wp-nginx
-cd $HOME/git/wp-nginx
-git checkout centos
-cp -a $HOME/git/wp-nginx/* /etc/nginx/
+git clone git://github.com/pothi/wordpress-nginx.git $HOME/git/wordpress-nginx
+cd $HOME/git/wordpress-nginx
+# git checkout centos
+cp -a $HOME/git/wordpress-nginx/{conf.d, globals, errors, sites-available} /etc/nginx/
 rm /etc/nginx/sites-enabled/domainname.conf
 # Other steps that depends on your particular requirement:
 # YOUR_DOMAIN_NAME=tinywp.com
