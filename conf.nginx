@@ -1,9 +1,0 @@
-# Basically nothing should be changed in the default nginx.conf file
-
-# Assuming that it (nginx.conf) contains the following include directives...
-#   1. include conf.d/*.conf;
-#   2. include sites-enabled/*;
-
-# Even if the second include directive wasn't there,
-#   it could be included via conf.d/common.conf file.
-#   So, no worries, if the default nginx.conf file isn't following a standard

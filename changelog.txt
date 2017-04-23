@@ -1,0 +1,7 @@
+v1.0
+	- released on April 23, 2017
+	- uniform naming scheme for domain names
+	- uniform naming scheme for default files
+	- introduction of blacklist and whitelist for IP addresses
+	- fix tab/space conflict; now we use only spaces
+	- enable gzip by default

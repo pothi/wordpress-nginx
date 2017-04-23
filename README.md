@@ -1,14 +1,22 @@
 # WordPress-Nginx
 
-WordPress specific Nginx configurations, tweaks, compatibility routines, etc.
+WordPress specific Nginx configurations, tweaks, and much more!
+
+## Advantages
+
+There are multiplpe advantages of using this repo as your go-to nginx configuration.
+
++ Contains ready-to-use sample vhost entries to be used with WP Super Cache plugin (with SSL), WP Rocket cache plugin, etc.
++ Uses best practices (ex: you can find the correct use 'if' statement here).
++ Continuously updated sample configurations and best practices.
 
 ## Compatibility
 
 Tested with 
 + Debian Debian 9.x (upcoming version)
-+ Ubuntu 16.04.x
++ Ubuntu 16.04 LTS
 
-For Fedora, Redhat, CentOS and Amazon Linux AMI or similar distributions, please look at the [CentOS branch](https://github.com/pothi/WordPress-Nginx/tree/centos "WordPress-Nginx configuration for Amazon Linux AMI, Fedora, Redhat and CentOS based distributions").
+For Fedora, Redhat, CentOS and Amazon Linux AMI or similar distributions, the configuration mentioned in the repo should work. Additional steps may be needed, though. See below for some details!
 
 ## How to Install
 
@@ -24,15 +32,24 @@ As __sudo or root__, please use the following guidelines...
 ```bash
 git clone git://github.com/pothi/wordpress-nginx.git $HOME/git/wordpress-nginx
 cd $HOME/git/wordpress-nginx
-# git checkout centos
+
 cp -a $HOME/git/wordpress-nginx/{conf.d, globals, errors, sites-available} /etc/nginx/
-rm /etc/nginx/sites-enabled/domainname.conf
+mkdir /etc/nginx/sites-enabled &> /dev/null
+cp /etc/nginx/nginx-sample.conf /etc/nginx/nginx.conf
+
 # Other steps that depends on your particular requirement:
-# YOUR_DOMAIN_NAME=tinywp.com
-# mv /etc/nginx/sites-available/domainname.conf /etc/nginx/sites-available/$YOUR_DOMAIN_NAME.conf
+
+# one-off process
+# edit /etc/nginx/conf.d/lb.conf and update the upstream block for 'fpm'
+
+# you may do the following for each vhost
+# WP_DOMAIN=example.com
+# YOUR_USERNAME=your_linux_username
+# cp /etc/nginx/sites-available/example.com.conf /etc/nginx/sites-available/$WP_DOMAIN.conf
 # cd /etc/nginx/sites-enabled/
-# ln -s ../sites-available/$YOUR_DOMAIN_NAME.conf
-# sed -i --follow-symlinks 's/domainname.com/'$YOUR_DOMAIN_NAME'/g' /etc/nginx/sites-enabled/$YOUR_DOMAIN_NAME.conf
+# ln -s ../sites-available/$WP_DOMAIN.conf
+# sed -i --follow-symlinks 's/example.com/'$WP_DOMAIN'/g' /etc/nginx/sites-enabled/$WP_DOMAIN.conf
+# sed -i --follow-symlinks 's/username/'$YOUR_USERNAME'/g' /etc/nginx/sites-enabled/$WP_DOMAIN.conf
 # nginx -t && service nginx restart
 ```
 
@@ -51,4 +68,4 @@ CentOS has a different file naming convention, yet simple directory structure, w
 + Patches, improvements, and suggestions are welcomed.
 + Please use contact form at https://www.tinywp.in/contact/ , if you'd like to contact Pothi Kalimuthu for other reasons.
 + I'm available for hire to setup, tweak or troubleshoot your server to provide *the fastest WordPress hosting*.
-+ Thanks for having a look here. Have a good time!
++ Thanks for checking it out. Have a good time!
