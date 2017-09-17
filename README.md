@@ -45,7 +45,6 @@ sudo cp -a $HOME/git/wordpress-nginx/* /etc/nginx/
 sudo mkdir /etc/nginx/sites-enabled &> /dev/null
 sudo cp /etc/nginx/nginx-sample.conf /etc/nginx/nginx.conf
 ```
-
 Further steps varies depending on your particular requirement:
 
 + you may edit /etc/nginx/conf.d/lb.conf and update the upstream block for 'fpm' (one-off process)
@@ -69,6 +68,11 @@ CentOS has a different file naming convention, yet simple directory structure, w
 + There is no `sites-available` or `sites-enabled` folder.
 + The file `/etc/nginx/fastcgi_params` in Debian is named as `/etc/nginx/fastcgi.conf` in CentOS.
 
+### About me
+
++ One of the top contributors for the tag [Nginx in ServerFault](https://serverfault.com/users/102173/pothi-kalimuthu?tab=profile).
++ Have released couple of WordPress Plugins, one of them is specifically for high performance WordPress sites... [https://profiles.wordpress.org/pothi#content-plugins](https://profiles.wordpress.org/pothi#content-plugins).
++ Have two _active_ blogs... [Tiny WordPress Insights](https://www.tinywp.in/) and [Tiny Web Performance Insights](https://www.tinywp.com/).
 
 ### Can you implement it for me?
 
