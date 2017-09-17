@@ -27,7 +27,7 @@ Step #1 - Install Nginx
 
 You may use the official Nginx repo or just use the Nginx package that comes with the OS. Both would work fine! I will leave the decision to you. Since, the installation process varies across Operating Systems, please refer the official installation docs to complete this step.
 
-Step #2 - Please backup your existing configuration files.
+Step #2 - Please backup your existing configuration files. Probably, have /etc under version control!
 
 ```bash
 TIMESTAMP=$(date +%F_%H-%M-%S)
@@ -39,8 +39,6 @@ Step #3 - Copy this repo to your server.
 
 ```bash
 git clone git://github.com/pothi/wordpress-nginx.git $HOME/git/wordpress-nginx
-cd $HOME/git/wordpress-nginx
-
 sudo cp -a $HOME/git/wordpress-nginx/* /etc/nginx/
 sudo mkdir /etc/nginx/sites-enabled &> /dev/null
 sudo cp /etc/nginx/nginx-sample.conf /etc/nginx/nginx.conf
@@ -51,10 +49,10 @@ Further steps varies depending on your particular requirement:
 + then you may do the following for each vhost, depending on your environment...
 ```bash
 WP_DOMAIN=example.com
-YOUR_USERNAME=your_linux_username
+WP_ROOT=/path/to/wordpress/for/example.com
 sudo cp /etc/nginx/sites-available/example.com.conf /etc/nginx/sites-available/$WP_DOMAIN.conf
+sudo sed -i 's:/home/username/sites/example.com/public:'$WP_ROOT':gp' /etc/nginx/sites-available/$WP_DOMAIN.conf
 sudo sed -i 's/example.com/'$WP_DOMAIN'/g' /etc/nginx/sites-available/$WP_DOMAIN.conf
-sudo sed -i 's/username/'$YOUR_USERNAME'/g' /etc/nginx/sites-available/$WP_DOMAIN.conf
 cd /etc/nginx/sites-enabled/
 sudo ln -s ../sites-available/$WP_DOMAIN.conf
 sudo nginx -t && sudo systemctl restart nginx
@@ -74,9 +72,13 @@ CentOS has a different file naming convention, yet simple directory structure, w
 + Have released couple of WordPress Plugins, one of them is specifically for high performance WordPress sites... [https://profiles.wordpress.org/pothi#content-plugins](https://profiles.wordpress.org/pothi#content-plugins).
 + Have two _active_ blogs... [Tiny WordPress Insights](https://www.tinywp.in/) and [Tiny Web Performance Insights](https://www.tinywp.com/).
 
-### Can you implement it for me?
+### Can you implement it on my server?
 
 Yes, of course. But, for a small fee of USD 5 per server per site. [Reach out to me now!](https://www.tinywp.in/contact/).
+
+### I have a unique situation. Can you customize it to suit my particular environment?
+
+Possibly, yes. My hourly rate is USD 25 per hour, though.
 
 ### Have questions or just wanted to say hi?
 
