@@ -1,56 +1,64 @@
-# WordPress-Nginx
+# WordPress Nginx Configuration Templates
 
 WordPress specific Nginx configurations, tweaks, and much more!
 
-## Advantages
+## Features
 
 There are multiplpe advantages of using this repo as your go-to nginx configuration.
 
-+ Contains ready-to-use sample vhost entries to be used with WP Super Cache plugin (with SSL), WP Rocket cache plugin, etc.
-+ Uses best practices (ex: you can find the correct use 'if' statement here).
++ Contains ready-to-use sample vhost entries (or templates) to be used with WP Super Cache plugin, WP Rocket cache plugin, Varnish, etc.
++ Uses best practices (ex: you can find the correct use 'if' statement in most templates in this repo).
++ SSL compatible
 + Continuously updated sample configurations and best practices.
 
 ## Compatibility
 
 Tested with 
-+ Debian Debian 9.x (upcoming version)
++ Debian Debian 9
 + Ubuntu 16.04 LTS
 
 For Fedora, Redhat, CentOS and Amazon Linux AMI or similar distributions, the configuration mentioned in the repo should work. Additional steps may be needed, though. See below for some details!
 
-## How to Install
+## How to Deploy
 
-Please backup your old configuration files...
+For all the steps mentioned below, you may need __sudo__ or __root__ privileges!
+
+Step #1 - Install Nginx
+
+You may use the official Nginx repo or just use the Nginx package that comes with the OS. Both would work fine! I will leave the decision to you. Since, the installation process varies across Operating Systems, please refer the official installation docs to complete this step.
+
+Step #2 - Please backup your existing configuration files.
 
 ```bash
 TIMESTAMP=$(date +%F_%H-%M-%S)
 mkdir $HOME/nginx-backup-$TIMESTAMP
-cp -a /etc/nginx/* $HOME/nginx-backup-$TIMESTAMP
+sudo cp -a /etc/nginx $HOME/nginx-backup-$TIMESTAMP
 ```
 
-As __sudo or root__, please use the following guidelines...
+Step #3 - Copy this repo to your server.
+
 ```bash
 git clone git://github.com/pothi/wordpress-nginx.git $HOME/git/wordpress-nginx
 cd $HOME/git/wordpress-nginx
 
-cp -a $HOME/git/wordpress-nginx/{conf.d, globals, errors, sites-available} /etc/nginx/
-mkdir /etc/nginx/sites-enabled &> /dev/null
-cp /etc/nginx/nginx-sample.conf /etc/nginx/nginx.conf
+sudo cp -a $HOME/git/wordpress-nginx/* /etc/nginx/
+sudo mkdir /etc/nginx/sites-enabled &> /dev/null
+sudo cp /etc/nginx/nginx-sample.conf /etc/nginx/nginx.conf
+```
 
-# Other steps that depends on your particular requirement:
+Further steps varies depending on your particular requirement:
 
-# one-off process
-# edit /etc/nginx/conf.d/lb.conf and update the upstream block for 'fpm'
-
-# you may do the following for each vhost
-# WP_DOMAIN=example.com
-# YOUR_USERNAME=your_linux_username
-# cp /etc/nginx/sites-available/example.com.conf /etc/nginx/sites-available/$WP_DOMAIN.conf
-# cd /etc/nginx/sites-enabled/
-# ln -s ../sites-available/$WP_DOMAIN.conf
-# sed -i --follow-symlinks 's/example.com/'$WP_DOMAIN'/g' /etc/nginx/sites-enabled/$WP_DOMAIN.conf
-# sed -i --follow-symlinks 's/username/'$YOUR_USERNAME'/g' /etc/nginx/sites-enabled/$WP_DOMAIN.conf
-# nginx -t && service nginx restart
++ you may edit /etc/nginx/conf.d/lb.conf and update the upstream block for 'fpm' (one-off process)
++ then you may do the following for each vhost, depending on your environment...
+```bash
+WP_DOMAIN=example.com
+YOUR_USERNAME=your_linux_username
+sudo cp /etc/nginx/sites-available/example.com.conf /etc/nginx/sites-available/$WP_DOMAIN.conf
+sudo sed -i 's/example.com/'$WP_DOMAIN'/g' /etc/nginx/sites-available/$WP_DOMAIN.conf
+sudo sed -i 's/username/'$YOUR_USERNAME'/g' /etc/nginx/sites-available/$WP_DOMAIN.conf
+cd /etc/nginx/sites-enabled/
+sudo ln -s ../sites-available/$WP_DOMAIN.conf
+sudo nginx -t && sudo systemctl restart nginx
 ```
 
 ### Changes on CentOS
@@ -62,10 +70,14 @@ CentOS has a different file naming convention, yet simple directory structure, w
 + The file `/etc/nginx/fastcgi_params` in Debian is named as `/etc/nginx/fastcgi.conf` in CentOS.
 
 
-## Questions, Issues or Bugs?
+### Can you implement it for me?
 
-+ Please submit issues or bugs via Github
-+ Patches, improvements, and suggestions are welcomed.
-+ Please use contact form at https://www.tinywp.in/contact/ , if you'd like to contact Pothi Kalimuthu for other reasons.
-+ I'm available for hire to setup, tweak or troubleshoot your server to provide *the fastest WordPress hosting*.
-+ Thanks for checking it out. Have a good time!
+Yes, of course. But, for a small fee of USD 5 per server per site. [Reach out to me now!](https://www.tinywp.in/contact/).
+
+### Have questions or just wanted to say hi?
+
+Please ping me on [Twitter](https://twitter.com/pothi]) or [send me a message](https://www.tinywp.in/contact/).
+
+If you find this repo useful, please spread the word!
+
+Suggestions, bug reports, issues, forks are always welcome!
