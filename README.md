@@ -6,11 +6,11 @@ WordPress specific Nginx configurations, tweaks, and much more!
 
 There are multiplpe advantages of using this repo as your go-to nginx configuration.
 
-+ Correct use `if` statement.
++ Correct use of `if` statement because [ifisevil](https://www.nginx.com/resources/wiki/start/topics/depth/ifisevil/).
 + SSL / LetsEncrypt / Certbot compatible.
-+ Continuously updated sample configurations with best practices.
 + Multisite support.
 + Contains ready-to-use sample vhost entries.
++ Continuously updated sample configurations with best practices.
 
 ## Available templates / vhost entries
 
@@ -24,23 +24,24 @@ There are multiplpe advantages of using this repo as your go-to nginx configurat
 
 + All static content have maximum expiration headers.
 + SSL session cache is enabled by default.
-+ Google PageSpeed support.
++ [Google PageSpeed Module](https://developers.google.com/speed/pagespeed/module/) support.
 + Open file cache support.
 + Server-level 301 support (for http => https, non-www => www, etc).
++ [Autoptimize](https://wordpress.org/plugins/autoptimize/) support.
 
 ## Security
 
-+ Support for dhparam.
-+ TLS 1.0 disabled by default.
-+ Mitigate httpoxy vulnerability.
-+ HSTS support.
++ Support for [strong dhparam](https://weakdh.org/).
++ TLSv1 and other insecure protocols are disabled by default.
++ Mitigate [httpoxy](https://httpoxy.org/) vulnerability.
++ [HSTS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) support.
 + All hidden and backup files are forbidden by default.
 
 ## Compatibility
 
 Tested with 
-+ Debian Debian 9
-+ Ubuntu 16.04 LTS
++ Debian Debian 9 (Stretch)
++ Ubuntu 16.04 LTS (Xenial)
 
 For RPM based distros (Fedora, Redhat, CentOS and Amazon Linux AMI), the configuration mentioned in the repo should work. Additional steps may be needed, though. See below for some details!
 
