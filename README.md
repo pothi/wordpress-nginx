@@ -6,10 +6,35 @@ WordPress specific Nginx configurations, tweaks, and much more!
 
 There are multiplpe advantages of using this repo as your go-to nginx configuration.
 
-+ Contains ready-to-use sample vhost entries (or templates) to be used with WP Super Cache plugin, WP Rocket cache plugin, Varnish, etc.
-+ Uses best practices (ex: you can find the correct use 'if' statement in most templates in this repo).
-+ SSL compatible
-+ Continuously updated sample configurations and best practices.
++ Correct use `if` statement.
++ SSL / LetsEncrypt / Certbot compatible.
++ Continuously updated sample configurations with best practices.
++ Multisite support.
++ Contains ready-to-use sample vhost entries.
+
+## Available templates / vhost entries
+
++ WP Super Cache plugin (with support for SSL and separate mobile cache)
++ WP Rocket cache plugin (SSL / mobile supported out of the box)
++ Multisite (sub-domain and sub-directory)
++ Varnish with Nginx for SSL termination.
++ Custom error pages.
+
+## Performance
+
++ All static content have maximum expiration headers.
++ SSL session cache is enabled by default.
++ Google PageSpeed support.
++ Open file cache support.
++ Server-level 301 support (for http => https, non-www => www, etc).
+
+## Security
+
++ Support for dhparam.
++ TLS 1.0 disabled by default.
++ Mitigate httpoxy vulnerability.
++ HSTS support.
++ All hidden and backup files are forbidden by default.
 
 ## Compatibility
 
@@ -17,11 +42,11 @@ Tested with
 + Debian Debian 9
 + Ubuntu 16.04 LTS
 
-For Fedora, Redhat, CentOS and Amazon Linux AMI or similar distributions, the configuration mentioned in the repo should work. Additional steps may be needed, though. See below for some details!
+For RPM based distros (Fedora, Redhat, CentOS and Amazon Linux AMI), the configuration mentioned in the repo should work. Additional steps may be needed, though. See below for some details!
 
 ## How to Deploy
 
-For all the steps mentioned below, you may need __sudo__ or __root__ privileges!
+For all the steps mentioned below, you need __sudo__ or __root__ privileges!
 
 Step #1 - Install Nginx
 
