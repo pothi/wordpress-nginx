@@ -11,6 +11,7 @@ There are multiplpe advantages of using this repo as your go-to nginx configurat
 + Multisite support.
 + Contains ready-to-use sample vhost entries.
 + Continuously updated sample configurations with best practices.
++ Ansible friendly (coming soon)
 
 ## Available templates / vhost entries
 
@@ -39,9 +40,13 @@ There are multiplpe advantages of using this repo as your go-to nginx configurat
 
 ## Compatibility
 
-Tested with 
+Tested with the following servers...
 + Debian Debian 9 (Stretch)
 + Ubuntu 16.04 LTS (Xenial)
+
+Test with the following Nginx versions...
++ Stable verisons 1.12.x
++ Mainline versions 1.13.x
 
 For RPM based distros (Fedora, Redhat, CentOS and Amazon Linux AMI), the configuration mentioned in the repo should work. Additional steps may be needed, though. See below for some details!
 
@@ -100,16 +105,10 @@ CentOS has a different file naming convention, yet simple directory structure, w
 
 ### Can you implement it on my server?
 
-Yes, of course. But, for a small fee of USD 5 per server per site. [Reach out to me now!](https://www.tinywp.in/contact/).
-
-### I have a unique situation. Can you customize it to suit my particular environment?
-
-Possibly, yes. My hourly rate is USD 25 per hour, though.
+Yes, of course. My hourly rate is USD 50 per hour. Please [contact me](https://www.tinywp.in/contact/) for any queries in this regard.
 
 ### Have questions or just wanted to say hi?
 
 Please ping me on [Twitter](https://twitter.com/pothi]) or [send me a message](https://www.tinywp.in/contact/).
 
-If you find this repo useful, please spread the word!
-
-Suggestions, bug reports, issues, forks are always welcome!
+If you find this repo useful, please spread the word! Suggestions, bug reports, future requests, forks are always welcome!
