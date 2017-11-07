@@ -37,6 +37,7 @@ There are multiplpe advantages of using this repo as your go-to nginx configurat
 + Mitigate [httpoxy](https://httpoxy.org/) vulnerability.
 + [HSTS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) support.
 + All hidden and backup files are forbidden by default.
++ Passes most security features in [Sonar Scanner](https://sonarwhal.com/scanner/).
 
 ## Compatibility
 
