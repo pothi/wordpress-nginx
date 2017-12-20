@@ -70,7 +70,7 @@ sudo cp -a /etc/nginx $HOME/nginx-backup-$TIMESTAMP
 Step #3 - Copy this repo to your server.
 
 ```bash
-git clone git://github.com/pothi/wordpress-nginx.git $HOME/git/wordpress-nginx
+git clone https://github.com/pothi/wordpress-nginx.git $HOME/git/wordpress-nginx
 sudo cp -a $HOME/git/wordpress-nginx/* /etc/nginx/
 sudo mkdir /etc/nginx/sites-enabled &> /dev/null
 sudo cp /etc/nginx/nginx-sample.conf /etc/nginx/nginx.conf
