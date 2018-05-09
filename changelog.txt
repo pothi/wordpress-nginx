@@ -1,3 +1,17 @@
+v3.0
+- Released on May 9, 2018
+- Rename wprocket.conf to wp-rocket.conf
+- Rename wpsupercache.conf to wp-super-cache.conf
+- Added Cloudflare support.
+- IPv6 support added.
+- WebP support.
+- Other minor changes.
+
+v2.0
+- released on Dec 20, 2017
+- changed filename globals/common-locations.conf to globals/assets.conf
+- other minor changes
+
 v1.0
 - released on April 23, 2017
 - uniform naming scheme for domain names

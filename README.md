@@ -11,12 +11,15 @@ There are multiplpe advantages of using this repo as your go-to nginx configurat
 + Multisite support.
 + Contains ready-to-use sample vhost entries.
 + Continuously updated sample configurations with best practices.
-+ Ansible friendly (coming soon)
++ IPv6 is supported out of the box.
++ Cloudflare support.
++ [WebP](https://developers.google.com/speed/webp/) support.
 
 ## Available templates / vhost entries
 
 + WP Super Cache plugin (with support for SSL and separate mobile cache)
-+ WP Rocket cache plugin (SSL / mobile supported out of the box)
++ WP Rocket cache plugin (SSL and / or mobile supported out of the box)
++ WP Fastest Cache plugin (SSL and / or mobile supported out of the box)
 + Multisite (sub-domain and sub-directory)
 + Varnish with Nginx for SSL termination.
 + Custom error pages.
@@ -43,10 +46,11 @@ There are multiplpe advantages of using this repo as your go-to nginx configurat
 
 Tested with the following servers...
 + Debian Debian 9 (Stretch)
-+ Ubuntu 16.04 LTS (Xenial)
++ Ubuntu 16.04 LTS (Xenial Xerus)
++ Ubuntu 18.04 LTS (Bionic Beaver)
 
 Test with the following Nginx versions...
-+ Stable verisons 1.12.x
++ Stable verisons 1.12.x and 1.14.x
 + Mainline versions 1.13.x
 
 For RPM based distros (Fedora, Redhat, CentOS and Amazon Linux AMI), the configuration mentioned in the repo should work. Additional steps may be needed, though. See below for some details!
@@ -57,7 +61,7 @@ For all the steps mentioned below, you need __sudo__ or __root__ privileges!
 
 Step #1 - Install Nginx
 
-You may use the official Nginx repo or just use the Nginx package that comes with the OS. Both would work fine! I will leave the decision to you. Since, the installation process varies across Operating Systems, please refer the official installation docs to complete this step.
+You may use the official Nginx repo or just use the Nginx package that comes with the OS. Both would work fine! I will leave the decision to you. Since, the installation process varies across Operating Systems, please refer the official installation guide to complete this step.
 
 Step #2 - Please backup your existing configuration files. Probably, have /etc under version control!
 
@@ -90,7 +94,7 @@ sudo ln -s ../sites-available/$WP_DOMAIN.conf
 sudo nginx -t && sudo systemctl restart nginx
 ```
 
-### Changes on CentOS
+### Changes on CentOS (and on rpm based distros in general)
 
 CentOS has a different file naming convention, yet simple directory structure, when compared to Debian derivatives. Let me describe them and I'd let you decide upon how you'd want to structure your files and name those files.
 
