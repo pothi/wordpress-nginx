@@ -23,6 +23,7 @@ There are multiplpe advantages of using this repo as your go-to nginx configurat
 + Multisite (sub-domain and sub-directory)
 + Varnish with Nginx for SSL termination.
 + Custom error pages.
++ Catchall template.
 
 ## Performance
 
