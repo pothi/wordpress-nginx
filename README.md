@@ -52,7 +52,7 @@ Tested with the following servers...
 
 Test with the following Nginx versions...
 + Stable verisons 1.12.x and 1.14.x
-+ Mainline versions 1.13.x
++ Mainline versions 1.13.x, 1.15.x
 
 For RPM based distros (Fedora, Redhat, CentOS and Amazon Linux AMI), the configuration mentioned in the repo should work. Additional steps may be needed, though. See below for some details!
 
