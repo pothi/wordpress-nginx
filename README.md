@@ -40,6 +40,7 @@ There are multiplpe advantages of using this repo as your go-to nginx configurat
 + TLSv1 and other insecure protocols are disabled by default.
 + Mitigate [httpoxy](https://httpoxy.org/) vulnerability.
 + [HSTS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) support.
++ Security headers to fit most sites (no CSP, though, as it varies depending on the site).
 + All hidden and backup files are forbidden by default.
 + Passes most security features in [Sonar Scanner](https://sonarwhal.com/scanner/).
 
@@ -50,40 +51,61 @@ Tested with the following servers...
 + Ubuntu 16.04 LTS (Xenial Xerus)
 + Ubuntu 18.04 LTS (Bionic Beaver)
 
-Test with the following Nginx versions...
+Tested with the following Nginx versions...
 + Stable verisons 1.12.x and 1.14.x
 + Mainline versions 1.13.x, 1.15.x
 
-For RPM based distros (Fedora, Redhat, CentOS and Amazon Linux AMI), the configuration mentioned in the repo should work. Additional steps may be needed, though. See below for some details!
+For RPM based distros (Fedora, Redhat, CentOS and Amazon Linux AMI), the configuration mentioned in the repo is likely to work. Additional steps may be needed, though. See below for some details!
+
+### Changes on CentOS (and on rpm based distros in general)
+
+CentOS has a different file naming convention, yet simple directory structure, when compared to Debian derivatives. Let me describe them and I'd let you decide upon how you'd want to structure your files and name those files.
+
++ The configuration for default sites are named as `default.conf` and `ssl.conf` in `/etc/nginx/conf.d/`.
++ There is no `sites-available` or `sites-enabled` folder.
++ The file `/etc/nginx/fastcgi_params` in Debian is named as `/etc/nginx/fastcgi.conf` in CentOS.
 
 ## How to Deploy
 
-For all the steps mentioned below, you need __sudo__ or __root__ privileges!
+*Short answer*: Use [WordPress in a box](https://github.com/pothi/wp-in-a-box). It sets up your server with all the goodies, including this repo!
+
+*Long answer*:
+
+For all the steps mentioned below, __sudo__ or __root__ privilege is required!
 
 Step #1 - Install Nginx
 
-You may use the official Nginx repo or just use the Nginx package that comes with the OS. Both would work fine! I will leave the decision to you. Since, the installation process varies across Operating Systems, please refer the official installation guide to complete this step.
+You may use [the official Nginx repo](https://nginx.org/en/linux_packages.html) or just use the Nginx package that comes with the OS. Both would work fine! I will leave the decision to you. Since, the installation process varies across Operating Systems, please refer the official installation guide to complete this step.
+
+If you prefer to use the Nginx packages that comes with the OS, you may need to run the following...
+
+`sudo apt install nginx`
+
+or
+
+`sudo yum install nginx`
 
 Step #2 - Please backup your existing configuration files. Probably, have /etc under version control!
 
 ```bash
 TIMESTAMP=$(date +%F_%H-%M-%S)
-mkdir $HOME/nginx-backup-$TIMESTAMP
-sudo cp -a /etc/nginx $HOME/nginx-backup-$TIMESTAMP
+mkdir ~/nginx-backup-$TIMESTAMP
+sudo cp -a /etc/nginx ~/nginx-backup-$TIMESTAMP
 ```
 
 Step #3 - Copy this repo to your server.
 
 ```bash
-git clone https://github.com/pothi/wordpress-nginx.git $HOME/git/wordpress-nginx
-sudo cp -a $HOME/git/wordpress-nginx/* /etc/nginx/
+git clone https://github.com/pothi/wordpress-nginx.git ~/git/wordpress-nginx
+sudo cp -a ~/git/wordpress-nginx/* /etc/nginx/
 sudo mkdir /etc/nginx/sites-enabled &> /dev/null
 sudo cp /etc/nginx/nginx-sample.conf /etc/nginx/nginx.conf
 ```
 Further steps varies depending on your particular requirement:
 
-+ you may edit /etc/nginx/conf.d/lb.conf and update the upstream block for 'fpm' (one-off process)
-+ then you may do the following for each vhost, depending on your environment...
++ you may edit /etc/nginx/conf.d/lb.conf and update the upstream block for 'fpm' (one-off process; done automatically if you use [WordPress in a LEMP Box](https://github.com/pothi/wp-in-a-box))
++ then you may do the following for each vhost (domain), depending on your environment...
+
 ```bash
 WP_DOMAIN=example.com
 WP_ROOT=/path/to/wordpress/for/example.com
@@ -95,17 +117,10 @@ sudo ln -s ../sites-available/$WP_DOMAIN.conf
 sudo nginx -t && sudo systemctl restart nginx
 ```
 
-### Changes on CentOS (and on rpm based distros in general)
-
-CentOS has a different file naming convention, yet simple directory structure, when compared to Debian derivatives. Let me describe them and I'd let you decide upon how you'd want to structure your files and name those files.
-
-+ The configuration for default sites are named as `default.conf` and `ssl.conf` in `/etc/nginx/conf.d/`.
-+ There is no `sites-available` or `sites-enabled` folder.
-+ The file `/etc/nginx/fastcgi_params` in Debian is named as `/etc/nginx/fastcgi.conf` in CentOS.
-
 ### About me
 
-+ One of the top contributors for the tag [Nginx in ServerFault](https://serverfault.com/users/102173/pothi-kalimuthu?tab=profile).
++ I specialize in hosting (high-traffic) WordPress / PHP sites.
++ I'm one of the top contributors for the tag [Nginx in ServerFault](https://serverfault.com/users/102173/pothi-kalimuthu?tab=profile).
 + Have released couple of WordPress Plugins, one of them is specifically for high performance WordPress sites... [https://profiles.wordpress.org/pothi#content-plugins](https://profiles.wordpress.org/pothi#content-plugins).
 + Have two _active_ blogs... [Tiny WordPress Insights](https://www.tinywp.in/) and [Tiny Web Performance Insights](https://www.tinywp.com/).
 
@@ -117,4 +132,4 @@ Yes, of course. My hourly rate is USD 50 per hour. Please [contact me](https://w
 
 Please ping me on [Twitter](https://twitter.com/pothi]) or [send me a message](https://www.tinywp.in/contact/).
 
-If you find this repo useful, please spread the word! Suggestions, bug reports, future requests, forks are always welcome!
+If you find this repo useful, please spread the word! Suggestions, discussion on best practices, bug reports, future requests, forks are always welcome!
