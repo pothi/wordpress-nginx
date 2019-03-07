@@ -29,7 +29,7 @@ There are multiplpe advantages of using this repo as your go-to nginx configurat
 
 + All static content have maximum expiration headers.
 + SSL session cache is enabled by default.
-+ [Google PageSpeed Module](https://developers.google.com/speed/pagespeed/module/) support.
++ Brotli compression support.
 + Open file cache support.
 + Server-level 301 support (for http => https, non-www => www, etc).
 + [Autoptimize](https://wordpress.org/plugins/autoptimize/) support.
@@ -43,6 +43,7 @@ There are multiplpe advantages of using this repo as your go-to nginx configurat
 + Security headers to fit most sites (no CSP, though, as it varies depending on the site).
 + All hidden and backup files are forbidden by default.
 + Passes most security features in [Sonar Scanner](https://sonarwhal.com/scanner/).
++ Gets 'A+' grade in [Qualys SSL Labs](https://www.ssllabs.com/ssltest/).
 
 ## Compatibility
 
@@ -71,7 +72,7 @@ CentOS has a different file naming convention, yet simple directory structure, w
 
 *Long answer*:
 
-For all the steps mentioned below, __sudo__ or __root__ privilege is required!
+Note: For all the steps mentioned below, __sudo__ or __root__ privilege is required!
 
 Step #1 - Install Nginx
 
