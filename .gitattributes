@@ -1,0 +1,8 @@
+*.conf linguist-detectable=true
+*.conf linguist-language=Nginx
+*.vhost linguist-detectable=true
+*.vhost linguist-language=Nginx
+
+# exclude the following while detecting the language
+*.sh linguist-detectable=false
+*.html linguist-detectable=false

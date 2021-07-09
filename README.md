@@ -9,7 +9,7 @@ There are multiplpe advantages of using this repo as your go-to nginx configurat
 + Correct use of `if` statement because [ifisevil](https://www.nginx.com/resources/wiki/start/topics/depth/ifisevil/).
 + SSL / LetsEncrypt / Certbot compatible.
 + Multisite support.
-+ Contains ready-to-use sample vhost entries.
++ Contains ready-to-use [sample vhost entries](https://github.com/pothi/wordpress-nginx/tree/main/sites-available).
 + Continuously updated sample configurations with best practices.
 + IPv6 is supported out of the box.
 + Cloudflare support.
@@ -23,7 +23,7 @@ There are multiplpe advantages of using this repo as your go-to nginx configurat
 + Multisite (sub-domain and sub-directory)
 + Varnish with Nginx for SSL termination.
 + Custom error pages.
-+ Catchall template.
++ [Catchall template](https://github.com/pothi/wordpress-nginx/blob/main/sites-available/catchall.conf).
 
 ## Performance
 
@@ -48,13 +48,15 @@ There are multiplpe advantages of using this repo as your go-to nginx configurat
 ## Compatibility
 
 Tested with the following servers...
-+ Debian Debian 9 (Stretch)
++ Debian 9 (Stretch)
++ Debian 10 (Buster)
 + Ubuntu 16.04 LTS (Xenial Xerus)
 + Ubuntu 18.04 LTS (Bionic Beaver)
++ Ubuntu 20.04 LTS (Focal Fossa)
 
 Tested with the following Nginx versions...
-+ Stable verisons 1.12.x and 1.14.x
-+ Mainline versions 1.13.x, 1.15.x
++ Stable verisons 1.12.x, 1.14.x, 1.20.x
++ Mainline versions 1.13.x, 1.15.x, 1.19.x
 
 For RPM based distros (Fedora, Redhat, CentOS and Amazon Linux AMI), the configuration mentioned in the repo is likely to work. Additional steps may be needed, though. See below for some details!
 
@@ -86,7 +88,7 @@ or
 
 `sudo yum install nginx`
 
-Step #2 - Please backup your existing configuration files. Probably, have /etc under version control!
+Step #2 - Please backup your existing configuration files. Probably, have `/etc` under version control!
 
 ```bash
 TIMESTAMP=$(date +%F_%H-%M-%S)
@@ -100,7 +102,7 @@ Step #3 - Copy this repo to your server.
 git clone https://github.com/pothi/wordpress-nginx.git ~/git/wordpress-nginx
 sudo cp -a ~/git/wordpress-nginx/* /etc/nginx/
 sudo mkdir /etc/nginx/sites-enabled &> /dev/null
-sudo cp /etc/nginx/nginx-sample.conf /etc/nginx/nginx.conf
+sudo cp /etc/nginx/nginx.conf /etc/nginx/
 ```
 Further steps varies depending on your particular requirement:
 
@@ -127,7 +129,7 @@ sudo nginx -t && sudo systemctl restart nginx
 
 ### Can you implement it on my server?
 
-Yes, of course. My hourly rate is USD 50 per hour. Please [contact me](https://www.tinywp.in/contact/) for any queries in this regard.
+Yes. I offer paid support and can implement it on your server. Minimum fee is USD50. Please [contact me](mailto:pothi@protonmail.com) for any queries in this regard.
 
 ### Have questions or just wanted to say hi?
 
