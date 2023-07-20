@@ -48,14 +48,18 @@ There are multiplpe advantages of using this repo as your go-to nginx configurat
 ## Compatibility
 
 Tested with the following servers...
-+ Debian 9 (Stretch)
+
++ Debian 12 (Bookworm)
++ Debian 11 (Bullseye)
 + Debian 10 (Buster)
-+ Ubuntu 16.04 LTS (Xenial Xerus)
-+ Ubuntu 18.04 LTS (Bionic Beaver)
++ Debian 9 (Stretch)
++ Ubuntu 22.04 LTS (Jammy Jellyfish)
 + Ubuntu 20.04 LTS (Focal Fossa)
++ Ubuntu 18.04 LTS (Bionic Beaver)
++ Ubuntu 16.04 LTS (Xenial Xerus)
 
 Tested with the following Nginx versions...
-+ Stable verisons 1.12.x, 1.14.x, 1.20.x
++ Stable verisons 1.12.x, 1.14.x, , 1.18.x, 1.20.x
 + Mainline versions 1.13.x, 1.15.x, 1.19.x
 
 For RPM based distros (Fedora, Redhat, CentOS and Amazon Linux AMI), the configuration mentioned in the repo is likely to work. Additional steps may be needed, though. See below for some details!
