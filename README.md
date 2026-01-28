@@ -17,13 +17,14 @@ There are multiplpe advantages of using this repo as your go-to nginx configurat
 
 ## Available templates / vhost entries
 
-+ WP Super Cache plugin (with support for SSL and separate mobile cache)
-+ WP Rocket cache plugin (SSL and / or mobile supported out of the box)
-+ WP Fastest Cache plugin (SSL and / or mobile supported out of the box)
++ WP Super Cache plugin (with support for separate mobile cache)
++ WP Rocket cache plugin (mobile cache supported out of the box)
++ Flying Press Cache plugin
++ WP Fastest Cache plugin
 + Multisite (sub-domain and sub-directory)
 + Varnish with Nginx for SSL termination.
 + Custom error pages.
-+ [Catchall template](https://github.com/pothi/wordpress-nginx/blob/main/sites-available/catchall.conf).
++ [Default template](https://github.com/pothi/wordpress-nginx/blob/main/sites-available/default.conf).
 
 ## Performance
 
@@ -49,10 +50,12 @@ There are multiplpe advantages of using this repo as your go-to nginx configurat
 
 Tested with the following servers...
 
++ Debian 13 (Trixie)
 + Debian 12 (Bookworm)
 + Debian 11 (Bullseye)
 + Debian 10 (Buster)
 + Debian 9 (Stretch)
++ Ubuntu 24.04 LTS (Noble Numbat)
 + Ubuntu 22.04 LTS (Jammy Jellyfish)
 + Ubuntu 20.04 LTS (Focal Fossa)
 + Ubuntu 18.04 LTS (Bionic Beaver)
